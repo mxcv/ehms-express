@@ -50,8 +50,8 @@ class HolidayRulesRepositoryInMemory implements HolidayRulesRepository {
         this.holidayRules = {
             maxConsecutiveDays: 20,
             blackoutPeriods: [
-                { from: dayjs.utc('2024-03-01'), to: dayjs.utc('2024-03-31') },
-                { from: dayjs.utc('2024-09-01'), to: dayjs.utc('2024-09-01') }
+                { from: dayjs.utc('2024-04-01'), to: dayjs.utc('2024-04-30') },
+                { from: dayjs.utc('2024-09-01'), to: dayjs.utc('2024-09-30') }
             ]
         };
     }

@@ -15,7 +15,7 @@
         <% holidayRequests.forEach(holidayRequest => { %>
             <tr>
                 <td><%= holidayRequest.employee.name %></td>
-                <td><%= holidayRequest.period.from.toString() %> - <%= holidayRequest.period.to.toString() %></td>
+                <td><%= `${holidayRequest.period.from.format('YYYY-MM-DD')} ~ ${holidayRequest.period.to.format('YYYY-MM-DD')}` %></td>
                 <td><%= holidayRequest.status %></td>
                 <td>
                     <% if (holidayRequest.status === 'pending') { %>

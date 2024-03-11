@@ -1,5 +1,5 @@
 import express from 'express';
-import { holidayRequestRepository } from '../app.js';
+import { employeeRepository, holidayRequestRepository } from '../app.js';
 
 const router = express.Router();
 
@@ -16,6 +16,8 @@ function changeStatus(req, res, newStatus) {
 
 router.get('/', (req, res) => {
     const holidayRequests = holidayRequestRepository.getPending();
+    for (let holidayRequest of holidayRequests)
+        holidayRequest.employee = employeeRepository.getById(holidayRequest.employeeId);
     res.render('holidays.ejs', { holidayRequests });
 });
 
