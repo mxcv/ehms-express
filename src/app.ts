@@ -1,12 +1,13 @@
 import express from 'express';
 import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc.js'
+import utc from 'dayjs/plugin/utc.js';
 import { HolidayManagmentRepositoryFactory } from './repositories/repositories.js';
 import { HolidayManagmentRepositoryInMemoryFactory } from './repositories/repositories-in-memory.js';
 import employeeRouter from './routes/employee-router.js';
+import holidaysRouter from './routes/holidays-router.js';
 
 dayjs.extend(utc);
-const repositoryFactory: HolidayManagmentRepositoryFactory = new HolidayManagmentRepositoryInMemoryFactory();
+const repositoryFactory = new HolidayManagmentRepositoryInMemoryFactory();
 const employeeRepository = repositoryFactory.createEmployeeRepository();
 const holidayRequestRepository = repositoryFactory.createHolidayRequestRepository();
 const holidayRulesRepository = repositoryFactory.createHolidayRulesRepository();
@@ -18,7 +19,8 @@ app.set('views', './src/views')
 app.set('view engine', 'ejs')
 
 app.get('/', (req, res) => res.render('index.ejs'))
-app.use('/employees', employeeRouter)
+app.use('/employees', employeeRouter);
+app.use('/holidays', holidaysRouter);
 
 app.listen(4000);
 
