@@ -1,4 +1,4 @@
-import { Employee, HolidayRequest, HolidayRequestStatus, HolidayRules } from './models.js'
+import { Employee, HolidayRequest, HolidayRequestStatus, HolidayRules } from '../models.js'
 
 interface EmployeeRepository {
     getAll(): Employee[];

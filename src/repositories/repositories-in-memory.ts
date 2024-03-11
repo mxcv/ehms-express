@@ -1,4 +1,5 @@
-import { Employee, HolidayRequest, HolidayRequestStatus, HolidayRules } from './models.js';
+import dayjs from 'dayjs';
+import { Employee, HolidayRequest, HolidayRequestStatus, HolidayRules } from '../models.js';
 import { EmployeeRepository, HolidayRequestRepository, HolidayRulesRepository, HolidayManagmentRepositoryFactory } from './repositories.js';
 
 class EmployeeRepositoryInMemory implements EmployeeRepository {
@@ -42,7 +43,18 @@ class HolidayRequestRepositoryInMemory implements HolidayRequestRepository {
 }
 
 class HolidayRulesRepositoryInMemory implements HolidayRulesRepository {
-    private holidayRules: HolidayRules = null;
+    private holidayRules: HolidayRules;
+
+    constructor() {
+        // default value
+        this.holidayRules = {
+            maxConsecutiveDays: 20,
+            blackoutPeriods: [
+                { from: dayjs.utc('2024-03-01'), to: dayjs.utc('2024-03-31') },
+                { from: dayjs.utc('2024-09-01'), to: dayjs.utc('2024-09-01') }
+            ]
+        };
+    }
 
     get(): HolidayRules {
         return this.holidayRules;

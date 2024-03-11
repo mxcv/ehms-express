@@ -2,14 +2,16 @@ import { Dayjs } from "dayjs"
 
 interface Employee {
     id?: number,
-    name: string
+    name: string,
+    holidays?: HolidayRequest[]
 }
 
 interface HolidayRequest {
     id?: number,
     period: Period,
     status: HolidayRequestStatus,
-    employeeId: number
+    employeeId: number,
+    employee?: Employee
 }
 
 interface HolidayRules {
